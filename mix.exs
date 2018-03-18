@@ -8,7 +8,7 @@ defmodule Exdiff.Mixfile do
       elixir: "~> 1.5",
       package: package(),
       name: "Exdiff",
-      description: "Difference library for Elixir",
+      description: "Text difference library for Elixir",
       source_url: "https://github.com/jung-hunsoo/exdiff",
       deps: deps(),
       docs: [

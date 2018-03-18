@@ -1,12 +1,15 @@
-# ex_diff
-Difference library for Elixir
+# Exdiff
+Text difference library for Elixir
 
 ## Installation
-Add `ex_diff` to your `mix.exs` dependencies:
+Add `exdiff` to your `mix.exs` dependencies:
 ```elixir
 def deps do
-  [{:ex_spec, "~> 0.1.0"}]
+  [{:exdiff, "~> 0.1.0"}]
 end
 ```
 
 ## Quick example
+```elixir
+Exdiff.diff_to_html(original, target)
+```
