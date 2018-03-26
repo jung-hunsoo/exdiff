@@ -5,7 +5,7 @@ Text difference library for Elixir
 Add `exdiff` to your `mix.exs` dependencies:
 ```elixir
 def deps do
-  [{:exdiff, "~> 0.1.0"}]
+  [{:exdiff, "~> 0.1.1"}]
 end
 ```
 
@@ -13,3 +13,10 @@ end
 ```elixir
 Exdiff.diff_to_html(original, target)
 ```
+
+## Usage
+There are three classes wrapped with `div` tag.
+
+- `exdiff-del`
+- `exdiff-ins`
+- `exdiff-eq`

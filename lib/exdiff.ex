@@ -4,6 +4,8 @@ defmodule Exdiff do
   """
   
   def diff_to_html(string1, string2, separator \\ "</p>") do
+    string1 = string1 || ""
+    string2 = string2 || ""
     s1 = string1 |> String.split(separator, trim: true) |> Enum.map(fn(x) -> x <> separator end)
     s2 = string2 |> String.split(separator, trim: true) |> Enum.map(fn(x) -> x <> separator end)
     List.myers_difference(s1, s2) |> wrap_html()
