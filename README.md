@@ -20,3 +20,7 @@ There are three classes wrapped with `div` tag.
 - `exdiff-del`
 - `exdiff-ins`
 - `exdiff-eq`
+
+## Test
+
+`mix test`
