@@ -5,13 +5,14 @@ Text difference library for Elixir
 Add `exdiff` to your `mix.exs` dependencies:
 ```elixir
 def deps do
-  [{:exdiff, "~> 0.1.1"}]
+  [{:exdiff, "~> 0.1.3"}]
 end
 ```
 
 ## Quick example
 ```elixir
-Exdiff.diff_to_html(original, target)
+> Exdiff.diff_to_html("abd", "abcd")
+{1, "<div class='exdiff-eq'>ab</div><div class='exdiff-ins'>c</div><div class='exdiff-eq'>d</div>"}
 ```
 
 ## Usage

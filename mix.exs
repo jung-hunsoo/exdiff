@@ -4,7 +4,7 @@ defmodule Exdiff.Mixfile do
   def project do
     [
       app: :exdiff,
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.5",
       package: package(),
       name: "Exdiff",
