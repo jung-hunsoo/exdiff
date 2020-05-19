@@ -8,7 +8,7 @@ Add `exdiff` to your `mix.exs` dependencies:
 
 ```elixir
 def deps do
-  [{:exdiff, "~> 0.1.3"}]
+  [{:exdiff, "~> 0.1.4"}]
 end
 ```
 
