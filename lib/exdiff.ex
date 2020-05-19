@@ -3,13 +3,16 @@ defmodule Exdiff do
     Exdiff is a simple wrapper to make String.myers_difference/2 useful.
   """
   
-  def diff_to_html(string1, string2, separator \\ "") do
+  def diff_to_html(string1, string2, opts \\ []) do
+    separator = Keyword.get(opts, :separator, "")
+    wrapper_tag = Keyword.get(opts, :wrapper_tag, "div")
+
     string1 = string1 || ""
     string2 = string2 || ""
     s1 = string1 |> String.split(separator, trim: true) |> Enum.map(fn(x) -> x <> separator end)
     s2 = string2 |> String.split(separator, trim: true) |> Enum.map(fn(x) -> x <> separator end)
     lmd = List.myers_difference(s1, s2)
-    html = lmd |> wrap_html()
+    html = lmd |> wrap_html(wrapper_tag)
     diffs_count = lmd
       |> Keyword.delete(:eq)
       |> Enum.map(fn({k, v}) -> {k, String.length(Enum.join(v))} end)
@@ -22,13 +25,13 @@ defmodule Exdiff do
     {diff_count, html}
   end
   
-  defp wrap_html(lmd) do
+  defp wrap_html(lmd, wrapper_tag) do
     lmd
     |> Enum.map_join(fn {k, v} ->
       case k do
-        :del -> "<div class='exdiff-del'>#{v}</div>"
-        :ins -> "<div class='exdiff-ins'>#{v}</div>"
-        _    -> "<div class='exdiff-eq'>#{v}</div>"
+        :del -> "<#{wrapper_tag} class='exdiff-del'>#{v}</#{wrapper_tag}>"
+        :ins -> "<#{wrapper_tag} class='exdiff-ins'>#{v}</#{wrapper_tag}>"
+        _    -> "<#{wrapper_tag} class='exdiff-eq'>#{v}</#{wrapper_tag}>"
       end
     end)
   end

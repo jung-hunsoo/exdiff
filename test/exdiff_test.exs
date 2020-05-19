@@ -10,13 +10,21 @@ defmodule ExdiffTest do
       assert Exdiff.diff_to_html(nil, nil) == {0, ""}
     end
     
-    test "compare and return diff with defalut separator /p tag." do
+    test "compare and return diff with a separator." do
       str_a = "<p>abc</p>"
       str_b = "<p>abc</p><p>def</p>"
       diff_count = String.length(str_b) - String.length(str_a)
-      assert Exdiff.diff_to_html(str_a, str_b, "</p>") == {diff_count, "<div class='exdiff-eq'><p>abc</p></div><div class='exdiff-ins'><p>def</p></div>"}
-      assert Exdiff.diff_to_html(str_b, str_a, "</p>") == {-diff_count, "<div class='exdiff-eq'><p>abc</p></div><div class='exdiff-del'><p>def</p></div>"}
-      assert Exdiff.diff_to_html(str_a, str_a, "</p>") == {0, "<div class='exdiff-eq'><p>abc</p></div>"}
+      assert Exdiff.diff_to_html(str_a, str_b, separator: "</p>") == {diff_count, "<div class='exdiff-eq'><p>abc</p></div><div class='exdiff-ins'><p>def</p></div>"}
+      assert Exdiff.diff_to_html(str_b, str_a, separator: "</p>") == {-diff_count, "<div class='exdiff-eq'><p>abc</p></div><div class='exdiff-del'><p>def</p></div>"}
+      assert Exdiff.diff_to_html(str_a, str_a, separator: "</p>") == {0, "<div class='exdiff-eq'><p>abc</p></div>"}
+    end
+
+    test "accepts a custom wrapper tag optionally" do
+      str_a = "Hello Exdiff."
+      str_b = "Hi Exdiff."
+      diff_count = String.length(str_b) - String.length(str_a)
+      assert Exdiff.diff_to_html(str_a, str_b, wrapper_tag: "span") ==
+        {diff_count, "<span class='exdiff-eq'>H</span><span class='exdiff-del'>ello</span><span class='exdiff-ins'>i</span><span class='exdiff-eq'> Exdiff.</span>"}
     end
   end
 end
