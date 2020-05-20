@@ -1,5 +1,7 @@
 # Exdiff
 
+[![Hex.pm](https://img.shields.io/hexpm/v/exdiff.svg)](https://hex.pm/packages/exdiff)
+
 Text difference library for Elixir
 
 ## Installation
