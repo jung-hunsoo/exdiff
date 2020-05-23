@@ -17,6 +17,12 @@ end
 ## Quick example
 
 ```elixir
+> Exdiff.diff("abd", "abcd")
+%{html: "<div class='exdiff-eq'>ab</div><div class='exdiff-ins'>c</div><div class='exdiff-eq'>d</div>", length: 1}
+
+> Exdiff.diff("abd", "abcd", wrapper_tag: "span")
+%{html: "<span class='exdiff-eq'>ab</span><span class='exdiff-ins'>c</span><span class='exdiff-eq'>d</span>", length: 1}
+
 > Exdiff.diff_to_html("abd", "abcd")
 {1, "<div class='exdiff-eq'>ab</div><div class='exdiff-ins'>c</div><div class='exdiff-eq'>d</div>"}
 
