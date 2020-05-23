@@ -2,8 +2,8 @@ defmodule Exdiff do
   @moduledoc """
     Exdiff is a simple wrapper to make String.myers_difference/2 useful.
   """
-  
-  def diff_to_html(string1, string2, opts \\ []) do
+
+  def diff(string1, string2, opts \\ []) do
     separator = Keyword.get(opts, :separator, "")
     wrapper_tag = Keyword.get(opts, :wrapper_tag, "div")
 
@@ -22,7 +22,12 @@ defmodule Exdiff do
         end)
       |> elem(1)
     diff_count = Keyword.get(diffs_count, :ins, 0) - Keyword.get(diffs_count, :del, 0)
-    {diff_count, html}
+    %{html: html, length: diff_count}
+  end
+  
+  def diff_to_html(string1, string2, opts \\ []) do
+    diff_map = diff(string1, string2, opts)
+    {diff_map.length, diff_map.html}
   end
   
   defp wrap_html(lmd, wrapper_tag) do
